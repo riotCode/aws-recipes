@@ -24,7 +24,7 @@
 #  action :run
 #end
 
-node[:deploy].each do |app_name, deploy|
+node[:deploy].each do |application, deploy|
 
   script "install_composer" do
     interpreter "bash"
