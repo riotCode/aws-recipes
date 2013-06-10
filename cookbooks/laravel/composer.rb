@@ -18,8 +18,22 @@
 # limitations under the License.
 #
 
-execute "composer install" do
-  command "php composer.phar install && touch /var/log/.php_composer_installed"
-  creates "/var/log/.php_composer_installed"
-  action :run
+#execute "composer install" do
+#  command "php composer.phar install && touch /var/log/.php_composer_installed"
+#  creates "/var/log/.php_composer_installed"
+#  action :run
+#end
+
+node[:deploy].each do |app_name, deploy|
+
+  script "install_composer" do
+    interpreter "bash"
+    user "root"
+    cwd "#{deploy[:deploy_to]}/current"
+    code <<-EOH
+    curl -s https://getcomposer.org/installer | php
+    php composer.phar install
+    EOH
+  end
+  
 end
