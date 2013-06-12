@@ -1,11 +1,11 @@
-directory "/var/www/#{node['web_app']['svn_svr_dest']}" do
-  mode 0755
-  action :create
-end
-directory "/var/www/#{node['web_app']['svn_svr_dest']}/shared" do
-  mode 0755
-  action :create
-end
+# directory "/var/www/#{node['web_app']['svn_svr_dest']}" do
+#   mode 0755
+#   action :create
+# end
+# directory "/var/www/#{node['web_app']['svn_svr_dest']}/shared" do
+#   mode 0755
+#   action :create
+# end
 subversion "/var/www/#{node['web_app']['svn_svr_dest']}" do
   repository node['web_app']['svn_url']
   revision "HEAD"
